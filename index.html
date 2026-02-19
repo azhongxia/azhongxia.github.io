@@ -1,15 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>我的永久网页</title>
+    <meta charset="UTF-8">
+    <title>我的永久主页</title>
     <style>
-        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+    /* 替换成你的图片地址，注 */
+    background: url('minioo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    /* 其他样式... */
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #667eea;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
     </style>
 </head>
 <body>
-    <h1>你好，这是我的永久网页！</h1>
-    <p>有点烦，搞半天二维码然后是网页</p>
-    <p>这里是老夏在测试(  ⩌ - ⩌ )ƪ(˘⌣˘)ʃ优雅(„ಡωಡ„)栓Qあいうえおアイウエオ哈哈</p>
+    <div class="card">
+        <h1>你好，这是我的永久主页！</h1>
+        <p>这是第一行文字</p>
+        <p>这是第二行文字</p>
+        <a href="https://github.com/azhongxia" class="btn" target="_blank">访问我的 GitHub</a>
+    </div>
 </body>
 </html>
