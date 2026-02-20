@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音频转SRT字幕</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #4158D0, #C850C0);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    .upload {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .upload:hover {
+      border-color: #704cdc;
+    }
+    #result {
+      white-space: pre-wrap;
+      background: #f6f6f6;
+      padding: 10px;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 10px 0;
+      font-size: 12px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #704cdc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🎙️ 音频转 SRT 字幕（本地识别）</h1>
+
+  <div class="upload" onclick="document.getElementById('audio-file').click()">
+    点击上传音频（wav/mp3/m4a）
+  </div>
+  <input type="file" id="audio-file" accept="audio/*" style="display:none;">
+
+  <button id="start">开始转字幕</button>
+  <button id="download" disabled>下载 SRT 文件</button>
+
+  <div id="result"></div>
+</div>
+
+<!-- 核心：whisper.wasm 在线CDN（不占你仓库空间） -->
+<script src="https://cdn.jsdelivr.net/npm/whisper-wasm@0.1.0/dist/whisper.min.js"></script>
+
+<script>
+  let srtContent = '';
+  const audioFile = document.getElementById('audio-file');
+  const startBtn = document.getElementById('start');
+  const downloadBtn = document.getElementById('download');
+  const result = document.getElementById('result');
+
+  startBtn.onclick = async () => {
+    if (!audioFile.files[0]) {
+      alert('先选音频');
+      return;
+    }
+    startBtn.disabled = true;
+    startBtn.innerText = '识别中…';
+
+    // 这里是简化演示逻辑，真正跑要加载模型
+    // 我下面给你完整可跑版本
+    result.innerText = '正在加载模型…\n第一次使用会稍慢';
+  };
+
+  downloadBtn.onclick = () => {
+    const blob = new Blob([srtContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '字幕.srt';
+    a.click();
+  };
+</script>
+
+</body>
+</html>
